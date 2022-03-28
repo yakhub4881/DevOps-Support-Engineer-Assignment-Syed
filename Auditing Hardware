@@ -1,0 +1,40 @@
+#!/bin/sh
+#Follow the below instructions to run this script
+#1) Open VI editor and copy paste these commands then save the file
+#2) Type sh filename to excute the output
+
+echo -n "SERVER Uptime: " 
+uptime -p
+echo -n "Last Server Reboot Timestamp: " 
+who -b
+echo -n "Server Local Time Zone: " 
+echo `date +%d/%m/%y`
+echo -n "Last 10 installed packges with dates: "
+grep -i installed /var/log/yum.log
+echo -n "OS version: " 
+cat /etc/os-release
+echo -n "Kernel version & Architecture: " 
+hostnamectl
+echo -n "CPU - Virtual cores & Clock speed: " 
+lscpu
+echo -n "Disk - Mounted/Unmounted volumes, type, storage: "
+df -aTh
+echo -n "Private and Public IP: " 
+curl ifconfig.me.
+cat /etc/resolv.conf
+echo -n "Private and Public DNS or Hostname: "
+hostname
+echo -n "Networking - Bandwidth: "
+iftop
+echo -n "Networking - OS Firewall (Allowed Ports & Protocols): "
+netstat -tulpn | grep LISTEN
+echo -n "Networking - Network Firewall (Allowed Ports & Protocols): "
+cat /etc/services | less
+echo -n "CPU - Utilization [Expected Less than 60 %, Highlight CPU consumption]: "
+top
+echo -n "RAM - Utilization [Expected Less than 60 %,Highlight RAM consumption]: "
+cat /proc/meminfo
+echo -n "Storage [Expected Less than 60 %, other wise Highlight Storage consumption]: "
+df -H
+echo -n "Highlight when current User Password Exipring: "
+chage -l userName

@@ -1,0 +1,15 @@
+#!/bin/sh
+#Follow the below instructions to run this script
+#1) Open VI editor and copy paste these commands then save the file
+#2) Type sh filename to excute the output
+
+find /data/audios/ -name "*.wav" -type f -mtime +40 -delete
+
+#Follow the below instructions to generate a log file with the namedeleted-files-<date>-<month>-<year>.log
+touch deleted-files-<date>-<month>-<year>.log
+
+#Mount deleted-files-<date>-<month>-<year>.log to history command
+history >> deleted-files-<date>-<month>-<year>.log
+
+#Type the below command to view the deleted files
+cat deleted-files-<date>-<month>-<year>.log
